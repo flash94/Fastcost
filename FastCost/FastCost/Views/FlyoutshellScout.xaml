@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pages="clr-namespace:FastCost.Views"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"     
+             mc:Ignorable="d"
+             x:Class="FastCost.Views.FlyoutshellScout"
+             
+             BackgroundColor="#FFF5F5"
+             FlyoutBackgroundColor="#560202"
+             FlyoutIcon="ic_action_reorder.png"
+             Title="Dashboard">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Style x:Key="FlyoutItemStyle" TargetType="Grid">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#370000"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <Style x:Key="BaseStyle" TargetType="Element">
+
+                <Setter Property="Shell.ForegroundColor" Value="#560202" />
+                <Setter Property="Shell.TitleColor" Value="#ffffff" />
+                <Setter Property="Shell.DisabledColor" Value="Green" />
+                <Setter Property="Shell.UnselectedColor" Value="White" />
+
+                <Setter Property="Shell.TabBarBackgroundColor" Value="Blue" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="Red"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="Red"/>
+            </Style>
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid Style="{StaticResource FlyoutItemStyle}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.8*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding FlyoutIcon}"
+                       Margin="5"
+                       HeightRequest="45" />
+                <Label Grid.Column="1"
+                       Text="{Binding Title}" 
+                       TextColor="White"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+
+            <Grid BackgroundColor="#560202" HeightRequest="150" HorizontalOptions="FillAndExpand">
+                <controls:CircleImage
+                    Margin="0,10,0,0"
+                    Source="userimg.png"
+                    Aspect="AspectFill"
+                    BorderColor="#FFF5F5"
+                    HorizontalOptions="Center"
+                    BorderThickness="2"
+                    HeightRequest="120"
+                    WidthRequest="120">
+                </controls:CircleImage>
+                <Label Text="FastCost" TextColor="#FFF5F5"
+                       FontAttributes="Bold" HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    <FlyoutItem  Icon="ic_action_account_box.png" Title="{Binding Dashboard}">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate pages:DashboardScout}"/>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Route="ItemsPage" Icon="ic_action_account_box.png" Title="{Binding Items}">
+        <Tab>
+            <ShellContent Title="Items" ContentTemplate="{DataTemplate pages:ViewItems}"/>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Icon="ic_action_account_box.png" Title="{Binding Components}">
+        <Tab>
+            <ShellContent Title="Items" ContentTemplate="{DataTemplate pages:Components}"/>
+        </Tab>
+    </FlyoutItem>
+
+    <!--<FlyoutItem Icon="ic_action_account_box.png" Title="{Binding Projects}">
+        <Tab>
+            <ShellContent Title="Items" ContentTemplate="{DataTemplate pages:Projects}"/>
+        </Tab>
+    </FlyoutItem>-->
+
+    <!--<FlyoutItem Icon="ic_action_account_box.png" Title="{Binding Users}">
+        <Tab>
+            <ShellContent Title="Items" ContentTemplate="{DataTemplate pages:EditUser}"/>
+        </Tab>
+    </FlyoutItem>-->
+</Shell>

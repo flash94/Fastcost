@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FastCost.Views.DashboardProjectManager">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="Primary">#790303</Color>
+            <Color x:Key="BorderColor">#D8D8D8</Color>
+            <Color x:Key="mainbackground">
+                <x:Arguments>
+                    <x:Double>86</x:Double>
+                    <!-- R/255 -->
+                    <x:Double>2</x:Double>
+                    <!-- G/255 -->
+                    <x:Double>2</x:Double>
+                    <!-- B/255 -->
+                    <x:Double>.5</x:Double>
+                    <!-- A: 0.0-1.0 -->
+                </x:Arguments>
+            </Color>
+
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#560202"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_book}"/>
+            </Style>
+
+            <Style x:Key="HeaderStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#560202"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="FontAttributes" Value="None"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_book}"/>
+            </Style>
+
+            <Style x:Key="EntryStyle" TargetType="Entry">
+                <Setter Property="HeightRequest" Value="45"></Setter>
+                <Setter Property="Margin" Value="5,0,0,0"></Setter>
+                <Setter Property="WidthRequest" Value="240"/>
+            </Style>
+
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="30,0,30,10"/>
+                <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+
+        <Frame IsClippedToBounds="False" HasShadow="True" Padding="0" BackgroundColor="blue" >
+            <Frame.Margin>
+                <OnPlatform x:TypeArguments="Thickness" Android="0" iOS="0"/>
+            </Frame.Margin>
+
+            <StackLayout x:Name="DashboardLayout" HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0,0,0,0">
+
+                <Frame HorizontalOptions="FillAndExpand" Margin="0,0,0,0" HasShadow="False" BackgroundColor="#FFF5F5">
+
+                    <Grid VerticalOptions="StartAndExpand" Padding="0" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*" />
+
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="180" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Label Text="Dashboard" Style="{StaticResource HeaderStyle}" Margin="10,10,0,0"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0" >
+                                <Frame HeightRequest="80" Margin="0,17,20,0" HasShadow="True">
+                                    <!--<Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="itemsTapped" NumberOfTapsRequired="1" />
+                                    </Frame.GestureRecognizers>-->
+                                    <StackLayout Orientation="Vertical" x:Name="Items">
+                                        <Label Text="Items" Style="{StaticResource LabelStyle}" Margin="10,5,0,0"/>
+                                        <Label Text="{Binding NumberOfItems}" FontSize="18" Margin="10,0,0,0"/>
+                                        <Button ImageSource="right.png" HorizontalOptions="End"  TextColor="#560202" Text="View All"  ContentLayout="Right,0" FontSize="14" FontFamily="Lato" BackgroundColor="#FFFFFF" Margin="0,-4,0,0" Clicked="AllItems"/>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1"  Orientation="Vertical">
+                                <Frame HeightRequest="80" HasShadow="True" Margin="0,17,10,0">
+                                    <StackLayout Orientation="Vertical" x:Name="Components">
+                                        <Label Text="Components" Style="{StaticResource LabelStyle}" Margin="10,5,0,0"/>
+                                        <Label Text="{Binding NumberOfComponents}" FontSize="18" Margin="10,0,0,0"/>
+                                        <Button ImageSource="right.png" HorizontalOptions="EndAndExpand"  TextColor="#560202" Text="View All"  ContentLayout="Right,-4" FontSize="14" FontFamily="Lato" BackgroundColor="#FFFFFF" Margin="0,-4,0,0" Clicked="AllComponents"/>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </Grid>
+                        <Grid Grid.Row="2" Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0" >
+                                <Frame HeightRequest="80" HasShadow="True" Margin="0,10,20,0">
+                                    <StackLayout Orientation="Vertical" x:Name="Projects">
+                                        <Label Text="Projects" Style="{StaticResource LabelStyle}" Margin="10,5,0,0"/>
+                                        <Label Text="{Binding NumberOfProjects}" FontSize="18" Margin="10,0,0,0"/>
+                                        <Button ImageSource="right.png" HorizontalOptions="End"  TextColor="#560202" Text="View All"  ContentLayout="Right,-4" FontSize="14" FontFamily="Lato" BackgroundColor="#FFFFFF" Margin="0,-4,0,0" Clicked="AllProjects"/>
+                                    </StackLayout>
+
+                                </Frame>
+                            </StackLayout>
+
+                        </Grid>
+                    </Grid>
+
+                </Frame>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="FastCost.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--Global Styles-->
+            <Color x:Key="NavigationPrimary">#FFF5F5</Color>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+
+            <OnPlatform x:Key="font_book" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Lato-Regular.ttf#Lato-Regular" />
+                <On Platform="iOS" Value="Lato-Regular" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="font_bold" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Lato-Bold.ttf#Lato-Bold" />
+                <On Platform="iOS" Value="Lato-Bold" />
+            </OnPlatform>
+            
+            <OnPlatform x:Key="font_medium" x:TypeArguments="x:String">
+                <On Platform="Android" Value="Lato-Medium.ttf#Lato-Medium" />
+                <On Platform="iOS" Value="Lato-Medium" />
+            </OnPlatform>
+
+            <Style x:Key="EditorStyle" TargetType="Entry">
+                <Setter Property="Margin" Value="7,0,0,0"></Setter>
+                <Setter Property="WidthRequest" Value="240"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_book}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+    
+</Application>

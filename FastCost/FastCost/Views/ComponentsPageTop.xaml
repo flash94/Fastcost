@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+    <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:Controls="clr-namespace:FastCost"
+            x:Class="FastCost.Views.ComponentsPageTop">
+        <ContentView.Resources>
+            <ResourceDictionary>
+
+                <Color x:Key="Primary">#790303</Color>
+                <Color x:Key="BorderColor">#D8D8D8</Color>
+                <Color x:Key="mainbackground">
+                    <x:Arguments>
+                        <x:Double>86</x:Double>
+                        <!-- R/255 -->
+                        <x:Double>2</x:Double>
+                        <!-- G/255 -->
+                        <x:Double>2</x:Double>
+                        <!-- B/255 -->
+                        <x:Double>.5</x:Double>
+                        <!-- A: 0.0-1.0 -->
+                    </x:Arguments>
+                </Color>
+
+                <Style x:Key="LabelStyle" TargetType="Label">
+                    <Setter Property="TextColor" Value="#560202"/>
+                    <Setter Property="FontSize" Value="24"/>
+                    <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_book}"/>
+            </Style>
+
+                <Style x:Key="EntryStyle" TargetType="Entry">
+                    <Setter Property="HeightRequest" Value="45"></Setter>
+                    <Setter Property="Margin" Value="5,0,0,0"></Setter>
+                    <Setter Property="WidthRequest" Value="240"/>
+                </Style>
+
+                <Style x:Key="FrameStyle" TargetType="Frame">
+                    <Setter Property="HasShadow" Value="False" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="30,0,30,10"/>
+                    <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
+                </Style>
+            </ResourceDictionary>
+        </ContentView.Resources>
+        <ContentView.Content>
+            <StackLayout Margin="0,0,0,0" Spacing="0">
+                <Grid BackgroundColor="#FFF5F5" HeightRequest="110" Margin="0,0,0,0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="180"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Label Text="Components" Style="{StaticResource LabelStyle}" Margin="30,30,0,0"/>
+                        </Grid>
+                        <Grid Grid.Column="1" HeightRequest="30" Margin="0,20,0,0">
+                        <Button ImageSource="plus.png" Text="Add Component" Style="{StaticResource font_book}" ContentLayout="Left,0" FontSize="14" BackgroundColor="#FFF5F5" TextColor="#560202" Margin="0,0,0,0" WidthRequest="200" Clicked="AddComponentClicked"/>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+                <StackLayout BackgroundColor="#FFF5F5" Margin="0,0,0,0" HeightRequest="70" Spacing="0">
+                    <Frame Style="{StaticResource FrameStyle}">
+                        <Grid  VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="magnify.png" Margin="5,0,0,0"></Image>
+                            <Controls:CustomEntry Grid.Column="1" Style="{StaticResource EntryStyle}" Placeholder="Search Items" x:Name="txtSearch" Keyboard="Default"/>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </ContentView.Content>
+    </ContentView>

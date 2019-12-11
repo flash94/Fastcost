@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:FastCost"
+             xmlns:Controls="clr-namespace:FastCost"
+             Shell.NavBarIsVisible="False"
+             mc:Ignorable="d"
+             x:Class="FastCost.Views.Login"
+             BackgroundImageSource="background.png"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="Primary">#790303</Color>
+            <Color x:Key="BorderColor">#D8D8D8</Color>
+            <Color x:Key="mainbackground">
+                <x:Arguments>
+                    <x:Double>86</x:Double>
+                    <!-- R/255 -->
+                    <x:Double>2</x:Double>
+                    <!-- G/255 -->
+                    <x:Double>2</x:Double>
+                    <!-- B/255 -->
+                    <x:Double>.5</x:Double>
+                    <!-- A: 0.0-1.0 -->
+                </x:Arguments>
+            </Color>
+            <Color x:Key="background">
+                <x:Arguments>
+                    <x:Double>255</x:Double>
+                    <!-- R/255 -->
+                    <x:Double>255</x:Double>
+                    <!-- G/255 -->
+                    <x:Double>255</x:Double>
+                    <!-- B/255 -->
+                    <x:Double>.65</x:Double>
+                    <!-- A: 0.0-1.0 -->
+                </x:Arguments>
+            </Color>
+
+            <Style x:Key="LableStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#000000" />
+                <Setter Property="FontSize" Value="Large" />
+                <Setter Property="FontFamily" Value="{StaticResource font_book}"/>
+            </Style>
+
+            <Style x:Key="header" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_bold}"/>
+            </Style>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
+            </Style>
+            <Style x:Key="EntryStyle" TargetType="Entry">
+                <Setter Property="HeightRequest" Value="40"></Setter>
+                <Setter Property="Margin" Value="5,0,0,0"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <!--Common Styles Ends-->
+    <StackLayout Margin="20,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <Label x:Name="lbl_NoInternet" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Transparent"/>
+        <Image Margin="0,0,0,30" Source="banner1"></Image>
+        <Frame HasShadow="False" CornerRadius="5" Margin="10, 0, 10, 0"  BorderColor="{StaticResource BorderColor}" BackgroundColor="{StaticResource mainbackground}">
+
+            <StackLayout>
+                <Label Style="{StaticResource header}" Text="Login"/>
+                <Label Style="{StaticResource LableStyle}" Text="Email" />
+                <Frame Style="{StaticResource FrameStyle}" WidthRequest="290" HeightRequest="52">
+                    <Controls:CustomEntry Placeholder="Enter your mail" x:Name="text_email" Keyboard="Default" Style="{StaticResource EntryStyle}"></Controls:CustomEntry>
+                </Frame>
+              
+                <Label Style="{StaticResource LableStyle}" Text="Password"></Label>
+                <Frame Style="{StaticResource FrameStyle}" WidthRequest="290" HeightRequest="52">
+                    <Controls:CustomEntry Placeholder="Enter you password" x:Name="txtPassword" IsPassword="True" Style="{StaticResource EntryStyle}"></Controls:CustomEntry>
+                </Frame>
+                <Button Margin="100,20" BorderRadius="0" FontAttributes="Bold" WidthRequest="200" x:Name="Loginsubmit" TextColor="White" BackgroundColor="{StaticResource Primary}" Text="Login" Clicked="loginclick"></Button>
+            </StackLayout>
+        </Frame>
+        <ActivityIndicator x:Name="indicator" IsVisible="False"   Grid.RowSpan="3" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsRunning="False" />
+    </StackLayout>
+</ContentPage>

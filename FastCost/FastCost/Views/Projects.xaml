@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local1="clr-namespace:FastCost.Views"
+             xmlns:SearchControl="clr-namespace:FastCost.CustomControls.Search"
+             x:Class="FastCost.Views.Projects">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="Primary">#790303</Color>
+            <Color x:Key="BorderColor">#D8D8D8</Color>
+            <Color x:Key="mainbackground">
+                <x:Arguments>
+                    <x:Double>86</x:Double>
+                    <!-- R/255 -->
+                    <x:Double>2</x:Double>
+                    <!-- G/255 -->
+                    <x:Double>2</x:Double>
+                    <!-- B/255 -->
+                    <x:Double>.5</x:Double>
+                    <!-- A: 0.0-1.0 -->
+                </x:Arguments>
+            </Color>
+
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#000000"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_book}"/>
+            </Style>
+
+            <Style x:Key="LabelStyleBold" TargetType="Label">
+                <Setter Property="TextColor" Value="#560202"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_book}"/>
+            </Style>
+
+            <Style x:Key="Line2" TargetType="Label">
+                <Setter Property="TextColor" Value="#292929"/>
+                <Setter Property="FontSize" Value="11"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontAttributes" Value="None"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_book}"/>
+            </Style>
+
+            <Style x:Key="price" TargetType="Label">
+                <Setter Property="TextColor" Value="#00AA25"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_bold}"/>
+            </Style>
+
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="HasShadow" Value="True" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
+            </Style>
+
+            <Style x:Key="SearchFrameStyle" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="30,0,30,10"/>
+                <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
+            </Style>
+
+            <Style x:Key="EntryStyle" TargetType="Entry">
+                <Setter Property="HeightRequest" Value="40"></Setter>
+                <Setter Property="Margin" Value="5,0,0,0"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+            <StackLayout>
+            <StackLayout Margin="0,0,0,0" Spacing="0">
+                <Grid BackgroundColor="#FFF5F5" HeightRequest="100" Margin="0,0,0,0" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="150"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Label Text="Items" Style="{StaticResource LabelStyleBold}" Margin="30,30,0,0"/>
+                        </Grid>
+                        <Grid Grid.Column="1" HeightRequest="30" Margin="0,20,30,0">
+                            <Button ImageSource="plus.png" TextColor="#560202" Text="Add Project" ContentLayout="Left,0" Style="{StaticResource LabelStyle}" BackgroundColor="#FFF5F5" Margin="0,0,0,0" WidthRequest="200" Clicked="AddProjectClicked" />
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+                <StackLayout BackgroundColor="#FFF5F5" Margin="0,0,0,0" Spacing="0">
+                    <Frame Style="{StaticResource SearchFrameStyle}" HeightRequest="70">
+                        <Grid  VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <SearchControl:CustomSearch Grid.Column="0" Style="{StaticResource EntryStyle}" Placeholder="Search Items" HeightRequest="70" x:Name="txtSearch" TextChanged="SearchBar_TextChanged" Keyboard="Default"/>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+                <ActivityIndicator HeightRequest="14" x:Name="acindicator" IsVisible="False"  VerticalOptions="Center" HorizontalOptions="Center"   IsRunning="False"/>
+            </StackLayout>
+            <StackLayout Margin="10,0,10,0" HorizontalOptions="CenterAndExpand">
+                    <ListView x:Name="Emplist" HasUnevenRows="True" SeparatorVisibility="Default" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Vertical" Padding="10,0,10,0">
+                                        <StackLayout Orientation="Horizontal">
+                                        <Label Style="{StaticResource Tag}" Text="Name :"/>
+                                        <Label Style="{StaticResource LabelStyle}" Text="{Binding ProjectName}"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Style="{StaticResource Tag}" Text="Created :"/>
+                                        <Label Style="{StaticResource Line2}" Text="{Binding DateCreated}"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Style="{StaticResource Tag}" Text="Cost :"/>
+                                        <Label Style="{StaticResource price}" Text="{Binding ProjectCost}"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>

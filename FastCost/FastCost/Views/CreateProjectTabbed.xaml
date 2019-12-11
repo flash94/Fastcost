@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:Controls="clr-namespace:FastCost"
+             xmlns:Pages="clr-namespace:FastCost.Views"
+             x:Class="FastCost.Views.CreateProjectTabbed"
+            Title="Create Project">
+  <!--Pages can be added as references or inline-->
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="Primary">#790303</Color>
+            <Color x:Key="BorderColor">#D8D8D8</Color>
+            <Color x:Key="mainbackground">
+                <x:Arguments>
+                    <x:Double>86</x:Double>
+                    <!-- R/255 -->
+                    <x:Double>2</x:Double>
+                    <!-- G/255 -->
+                    <x:Double>2</x:Double>
+                    <!-- B/255 -->
+                    <x:Double>.5</x:Double>
+                    <!-- A: 0.0-1.0 -->
+                </x:Arguments>
+            </Color>
+
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#560202"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_book}"/>
+            </Style>
+
+            <Style x:Key="InputStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#837979"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_book}"/>
+            </Style>
+
+            <Style x:Key="EntryStyle" TargetType="Entry">
+                <Setter Property="HeightRequest" Value="45"></Setter>
+                <Setter Property="Margin" Value="5,0,0,0"></Setter>
+                <Setter Property="WidthRequest" Value="240"/>
+            </Style>
+
+            <Style x:Key="Tag" TargetType="Label">
+                <Setter Property="TextColor" Value="#837979"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontAttributes" Value="None"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_book}"/>
+            </Style>
+            
+            <Style x:Key="Line2" TargetType="Label">
+                <Setter Property="TextColor" Value="#000000"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontAttributes" Value="None"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_book}"/>
+            </Style>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="Padding" Value="10,0,0,4" />
+                <Setter Property="Margin" Value="30,0,30,10"/>
+                <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
+            </Style>
+            
+            <Style x:Key="price" TargetType="Label">
+                <Setter Property="TextColor" Value="#000000"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_bold}"/>
+            </Style>
+            <Style x:Key="GridSpace" TargetType="Grid">
+                <Setter Property="ColumnSpacing" Value="0" />
+                <Setter Property="RowSpacing" Value="0" />
+            </Style>
+        </ResourceDictionary>
+    </TabbedPage.Resources>
+    <ContentPage Title="Create Project">
+        <StackLayout BackgroundColor="#FFF5F5">
+            <Grid BackgroundColor="#FFF5F5"  Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" BackgroundColor="Transparent" ImageSource="Back.png" Margin="0,0,0,0" Padding="20,20,0,0" Clicked="arrowClicked"></Button>
+                    <Label Style="{DynamicResource LabelStyle}" Grid.Column="1" Text="Create Project" Margin="0,20,0,0"></Label>
+                </Grid>
+            </Grid>
+            <StackLayout BackgroundColor="#FFF5F5">
+                <Label Margin="30,0,30,4" Style="{StaticResource InputStyle}" FontAttributes="Bold" Text="Project Name"/>
+                <Frame Style="{StaticResource FrameStyle}" HasShadow="True">
+                    <StackLayout>
+                        <Controls:CustomEntry Style="{StaticResource EntryStyle}" Placeholder="Enter the project name" x:Name="projectName" Keyboard="Default"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout BackgroundColor="#FFF5F5">
+                <Label Margin="30,0,30,4" Style="{StaticResource InputStyle}" FontAttributes="Bold" Text="Project Description"/>
+                <Frame Style="{StaticResource FrameStyle}" HasShadow="True">
+                    <StackLayout>
+                        <Controls:BorderlessEditor HeightRequest="80" Placeholder="Describe the project" x:Name="projectDescription" Keyboard="Default"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Margin="30,0,30,0" Style="{StaticResource InputStyle}" FontAttributes="Bold" Text="Added Components"/>
+                <Frame Style="{StaticResource FrameStyle}" HeightRequest="355" HasShadow="True">
+                    <StackLayout Orientation="Vertical">
+                        <ListView x:Name="Emplist" HasUnevenRows="True" SeparatorVisibility="Default" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                                            <Grid VerticalOptions="CenterAndExpand" Padding="0" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackLayout Grid.Row="0" Grid.Column="0" >
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Style="{StaticResource LabelStyle}" Text="{Binding ComponentName}"/>
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Style="{StaticResource Tag}" Text="Created :"/>
+                                                        <Label Style="{StaticResource Line2}" Text="{Binding date}"/>
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Style="{StaticResource Tag}" Text="Items :"/>
+                                                        <Label Style="{StaticResource price}" Text="{Binding NoOfItems}"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                                <StackLayout Grid.Column="1">
+                                                    <Button x:Name="removeComponent" IsVisible="True" BackgroundColor="#FFF5F5" WidthRequest="40" HeightRequest="40" ImageSource="minusboxnew.png" HorizontalOptions="End" VerticalOptions="Start" Clicked="RemoveComponent" CommandParameter="{Binding .}" />
+                                                </StackLayout>
+                                            </Grid>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <Button Margin="30,10,30,4" HorizontalOptions="Start" BorderRadius="0" FontAttributes="Bold" WidthRequest="97" x:Name="Create" TextColor="White" BackgroundColor="{StaticResource Primary}" Text="Submit"></Button>
+        </StackLayout>
+    </ContentPage>
+
+    <Pages:CreateProjectTab2/>
+</TabbedPage>

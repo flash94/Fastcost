@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:Controls="clr-namespace:FastCost"
+             x:Class="FastCost.Views.AddItems"
+             IconImageSource="Back.png"
+             xmlns:PickerControl="clr-namespace:FastCost.CustomControls"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="Primary">#790303</Color>
+            <Color x:Key="BorderColor">#D8D8D8</Color>
+            <Color x:Key="mainbackground">
+                <x:Arguments>
+                    <x:Double>86</x:Double>
+                    <!-- R/255 -->
+                    <x:Double>2</x:Double>
+                    <!-- G/255 -->
+                    <x:Double>2</x:Double>
+                    <!-- B/255 -->
+                    <x:Double>.5</x:Double>
+                    <!-- A: 0.0-1.0 -->
+                </x:Arguments>
+            </Color>
+
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#560202"/>
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_book}"/>
+            </Style>
+
+            <Style x:Key="InputStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#837979"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontFamily" Value="{StaticResource font_book}"/>
+            </Style>
+
+            <Style x:Key="EntryStyle" TargetType="Entry">
+                <Setter Property="HeightRequest" Value="45"></Setter>
+                <Setter Property="Margin" Value="5,0,0,0"></Setter>
+                <Setter Property="WidthRequest" Value="240"/>
+            </Style>
+
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="Padding" Value="10,0,0,4" />
+                <Setter Property="Margin" Value="30,0,30,10"/>
+                <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
+            </Style>
+
+            <Style x:Key="GridSpace" TargetType="Grid">
+                <Setter Property="ColumnSpacing" Value="0" />
+                <Setter Property="RowSpacing" Value="0" />
+            </Style>
+
+            <Style x:Key="PickerStyle" TargetType="Picker">
+                <Setter Property="HeightRequest" Value="45"></Setter>
+                <Setter Property="Margin" Value="5,0,0,0"></Setter>
+                <Setter Property="WidthRequest" Value="240"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="#FFF5F5">
+                <Grid BackgroundColor="#FFF5F5"  Margin="0,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" BackgroundColor="Transparent" ImageSource="Back.png" Margin="0,0,0,0" Padding="20,20,0,0" Clicked="backClicked"></Button>
+                        <Label Style="{DynamicResource LabelStyle}" Grid.Column="1" Text="Add Items" Margin="0,20,0,0"></Label>
+                    </Grid>
+                </Grid>
+                <StackLayout BackgroundColor="#FFF5F5">
+                    <Label Margin="30,0,30,4" Style="{StaticResource InputStyle}" FontAttributes="Bold" Text="Item Name"/>
+                    <Frame Style="{StaticResource FrameStyle}" HasShadow="True">
+                        <StackLayout>
+                            <Controls:CustomEntry Style="{StaticResource EntryStyle}" Placeholder="Enter the item name" x:Name="itemName" Keyboard="Default"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout BackgroundColor="#FFF5F5">
+                    <Label Margin="30,0,30,4" Style="{StaticResource InputStyle}" FontAttributes="Bold" Text="Item Description"/>
+                    <Frame Style="{StaticResource FrameStyle}" HasShadow="True">
+                        <StackLayout>
+                            <Controls:BorderlessEditor HeightRequest="80" AutoSize="TextChanges" Placeholder="Describe the item" x:Name="itemDescription" Keyboard="Default"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout BackgroundColor="#FFF5F5">
+                    <Label Margin="30,0,30,4" Style="{StaticResource InputStyle}" FontAttributes="Bold" Text="Price"/>
+                    <Frame Style="{StaticResource FrameStyle}" HasShadow="True">
+                        <StackLayout>
+                            <Controls:CustomEntry Style="{StaticResource EntryStyle}" Placeholder="Cost of the item..." x:Name="itemPrice" Keyboard="Default"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout BackgroundColor="#FFF5F5">
+                    <Label Margin="30,0,30,4" Style="{StaticResource InputStyle}" FontAttributes="Bold" Text="Dealers Location"/>
+                    <Frame Style="{StaticResource FrameStyle}" HasShadow="True">
+                        <StackLayout>
+                            <Controls:CustomEntry Style="{StaticResource EntryStyle}" Placeholder="city the dealer lives in..." x:Name="DealerCity" Keyboard="Default"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout BackgroundColor="#FFF5F5">
+                    <Label Margin="30,0,30,4" Style="{StaticResource InputStyle}" FontAttributes="Bold" Text="Dealers Address"/>
+                    <Frame Style="{StaticResource FrameStyle}" HasShadow="True">
+                        <StackLayout>
+                            <Controls:CustomEntry Style="{StaticResource EntryStyle}" Placeholder="shop address of the dealer" x:Name="DealerAddr" Keyboard="Default"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout BackgroundColor="#FFF5F5">
+                    <Label Margin="30,0,30,4" Style="{StaticResource InputStyle}" FontAttributes="Bold" Text="Dealers Phone"/>
+                    <Frame Style="{StaticResource FrameStyle}" HasShadow="True">
+                        <StackLayout>
+                            <Controls:CustomEntry Style="{StaticResource EntryStyle}" Placeholder="Dealers Phone No" x:Name="DealerPhone" Keyboard="Default"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout BackgroundColor="#FFF5F5">
+                    <Label Margin="30,0,30,4" Style="{StaticResource InputStyle}" FontAttributes="Bold" Text="Online Store URL"/>
+                    <Frame Style="{StaticResource FrameStyle}" HasShadow="True">
+                        <StackLayout>
+                            <Controls:CustomEntry Style="{StaticResource EntryStyle}" Placeholder="URL for the online site" x:Name="StoreUrl" Keyboard="Default"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout BackgroundColor="#FFF5F5">
+                    <Label Margin="30,0,30,4" Style="{StaticResource InputStyle}" FontAttributes="Bold" Text="Item Category"/>
+                    <Frame Style="{StaticResource FrameStyle}" HasShadow="True">
+                        <StackLayout>
+                            <PickerControl:CustomPicker Style="{StaticResource PickerStyle}" x:Name="Categorypicker" Title="--Select Category--"
+                                    ItemsSource="{Binding result}"
+                                    ItemDisplayBinding="{Binding category}"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+                <StackLayout Margin="30,0,20,10">
+                    <Grid Style="{DynamicResource GridSpace}">
+                        <Grid Grid.Row="0" HeightRequest="45" ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" FontSize="11" HeightRequest="44" BorderRadius="0" FontAttributes="None" x:Name="selectimage" TextColor="#560202" BackgroundColor="#C4C4C4" Text="Choose Image" Clicked="SelectImage"></Button>
+                            <Frame Grid.Column="1" HeightRequest="45" HasShadow="False" Margin="0,0,10,0">
+                                <StackLayout Spacing="0" Margin="0">
+                                    <Label Style="{StaticResource InputStyle}" x:Name="imageName" Margin="0,0,0,0"/>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </Grid>
+                </StackLayout>
+                <ActivityIndicator x:Name="actindicator" Grid.RowSpan="2" BackgroundColor="#560202" VerticalOptions="Center" IsVisible="False" HorizontalOptions="Center"/>
+                <Button Margin="30,10,30,4" HorizontalOptions="Start" BorderRadius="0" FontAttributes="Bold" WidthRequest="97" x:Name="Submit" TextColor="White" BackgroundColor="{StaticResource Primary}" Text="Submit" Clicked="CreateItemClicked"></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
