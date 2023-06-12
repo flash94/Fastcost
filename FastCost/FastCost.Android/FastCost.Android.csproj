@@ -15,7 +15,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -120,7 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FastCost\FastCost.csproj">
-      <Project>{4594CA4B-AB96-4336-9B83-6700D149D5F9}</Project>
+      <Project>{98DBDA6F-71E6-42EE-B212-04D7A9E27ECB}</Project>
       <Name>FastCost</Name>
     </ProjectReference>
   </ItemGroup>
